@@ -21,14 +21,15 @@ public class SeleniumBase {
         String hubhost = config.getString("HUBHOST");
         String browser = config.getString("BROWSER");
         String baseurl = config.getString("BASEURL");
-        System.out.println(hubhost);
-        System.out.println(browser);
-        System.out.println(baseurl);
+        //System.out.println(hubhost);
+        //System.out.println(browser);
+        //System.out.println(baseurl);
         switch (browser) {
             default: //Chrome local
                 /* Local */
                 System.setProperty("webdriver.chrome.driver", "/Users/3i-21-173/chromedriver");
                 driver = new ChromeDriver();
+                break;
             case "CH": //Chrome
                 /* Selenium Grid */
                 //System.setProperty("webdriver.chrome.driver", "/Users/3i-21-173/chromedriver");
@@ -42,9 +43,9 @@ public class SeleniumBase {
                 //driver = new FirefoxDriver();
                 break;
         }
-        System.out.println("baseurl");
-        driver.get(baseurl);
-        //driver.get("http://");
+        //System.out.println("baseurl");
+        //driver.get(baseurl);
+        driver.get("http://");
     }
 
     public void closeBrowser() {

@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DashboardLoginTest extends TestBase {
 
-    @Test(groups = { "demo" })
+    //@Test(groups = { "smoke" })
     public void VerifyLogin() {
         WebDriver driver = getDriver();                
         //Go to Tour frontpage (login)
