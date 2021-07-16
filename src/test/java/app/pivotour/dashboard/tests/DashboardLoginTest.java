@@ -18,7 +18,7 @@ public class DashboardLoginTest extends TestBase {
     public void VerifyLogin() {
         WebDriver driver = getDriver();                
         //Go to Tour frontpage (login)
-        driver.get(config.getString("BASEURL"));
+        //driver.get(config.getString("BASEURL"));
         //Page loding timeout (10s)
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         

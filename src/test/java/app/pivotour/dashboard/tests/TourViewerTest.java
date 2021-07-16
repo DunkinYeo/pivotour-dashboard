@@ -19,7 +19,7 @@ public class TourViewerTest extends TestBase {
     public void verifyTourViewerUI() {
         WebDriver driver = getDriver();
         //Go to Tour frontpage (login)
-        driver.get(config.getString("BASEURL"));
+        //driver.get(config.getString("BASEURL"));
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         try {
@@ -43,6 +43,7 @@ public class TourViewerTest extends TestBase {
             TourViewerPage tourView = new TourViewerPage();
             System.out.println(tourView.getPageTitle(driver));
             assertTrue(tourView.getPageTitle(driver).contains("12 - 13 edited"));
+            //More asserts to be added below
 
         } catch (Exception e) {
             e.printStackTrace(System.out);

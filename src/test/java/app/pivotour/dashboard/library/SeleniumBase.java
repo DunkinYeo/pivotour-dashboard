@@ -44,8 +44,8 @@ public class SeleniumBase {
                 break;
         }
         //System.out.println("baseurl");
-        //driver.get(baseurl);
-        driver.get("http://");
+        driver.get(baseurl);
+        //driver.get("http://");
     }
 
     public void closeBrowser() {
