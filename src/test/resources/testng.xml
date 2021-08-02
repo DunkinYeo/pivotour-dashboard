@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Pivo Tour Dashboard Test" parallel="false" verbose="1" >
+<suite name="Pivo Tour Dashboard Test" parallel="none" verbose="1" >
     <parameter name="configfile" value="src/test/resources/config.properties" />
     <test name="pivotourdashboard" >
         <groups>

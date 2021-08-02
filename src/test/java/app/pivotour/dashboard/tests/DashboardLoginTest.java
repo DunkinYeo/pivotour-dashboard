@@ -14,9 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 public class DashboardLoginTest extends TestBase {
 
-    //@Test(groups = { "smoke" })
+    @Test(groups = { "smoke" })
     public void VerifyLogin() {
-        WebDriver driver = getDriver();                
+        WebDriver driver = getDriver();
         //Go to Tour frontpage (login)
         //driver.get(config.getString("BASEURL"));
         //Page loding timeout (10s)

@@ -10,6 +10,7 @@ import java.io.File;
 
 public class TestBase extends SeleniumBase {
 
+    public WebDriver driver;
     /*
         To-Do : Any config for Remote Selenium Server in @BeforeTest
      */
@@ -34,6 +35,7 @@ public class TestBase extends SeleniumBase {
     // Create global WebDriver
     @BeforeMethod(groups = { "abstract" })
     public void setUpTests() {
+        WebDriver driver;
         try {
             super.openBrowser();
         } catch (Exception e) {

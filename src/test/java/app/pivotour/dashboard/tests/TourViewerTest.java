@@ -6,6 +6,7 @@ import app.pivotour.dashboard.pages.LoginPage;
 import app.pivotour.dashboard.pages.SearchResultPage;
 import app.pivotour.dashboard.pages.TourViewerPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -28,16 +29,17 @@ public class TourViewerTest extends TestBase {
             login.clickLogin(driver);
 
             HeaderPage header = new HeaderPage();
-            Thread.sleep(3000);
+            //Thread.sleep(3000);
             header.searchTour(driver, "12 - 13 edited");
 
-            Thread.sleep(5000);
+            Thread.sleep(3000);
 
             SearchResultPage search = new SearchResultPage();
-            search.getTourByTitle(driver,"12 - 13 edited").click();
+            WebElement tour = search.getTourByTitle(driver,"12 - 13 edited");
+            tour.click();
             Thread.sleep(5000);
 
-            ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
+            ArrayList<String> tabs = new ArrayList<> (driver.getWindowHandles());
             driver.switchTo().window(tabs.get(1));
 
             TourViewerPage tourView = new TourViewerPage();
@@ -47,6 +49,7 @@ public class TourViewerTest extends TestBase {
 
         } catch (Exception e) {
             e.printStackTrace(System.out);
+            fail("Test Case Failed!");
         }
 
     }
