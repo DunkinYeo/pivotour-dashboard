@@ -9,6 +9,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import static app.pivotour.dashboard.library.ThreadSafeWebDriverStorage.startWebDriverSession;
+import static app.pivotour.dashboard.library.ThreadSafeWebDriverStorage.getDriver;
+import static app.pivotour.dashboard.library.ThreadSafeWebDriverStorage.closeWebDriverSession;
+
 /* To-Do for Selenium Grid */
 public class SeleniumBase {
 
@@ -16,25 +20,16 @@ public class SeleniumBase {
 
     // To-Do : Getting parameters from external config file
     public static PropertiesConfiguration config = null;
+    public static boolean isRunningInGrid = false;
 
     public void openBrowser() throws MalformedURLException {
-        String hubhost = config.getString("HUBHOST");
         String browser = config.getString("BROWSER");
         String baseurl = config.getString("BASEURL");
-        //System.out.println(hubhost);
-        //System.out.println(browser);
-        //System.out.println(baseurl);
+        /* Local Mode*/
         switch (browser) {
-            default: //Chrome local
-                /* Local */
+            case "CH": //Chrome
                 System.setProperty("webdriver.chrome.driver", "/Users/3i-21-173/chromedriver");
                 driver = new ChromeDriver();
-                break;
-            case "CH": //Chrome
-                /* Selenium Grid */
-                //System.setProperty("webdriver.chrome.driver", "/Users/3i-21-173/chromedriver");
-                ChromeOptions chromeOptions = new ChromeOptions();
-                driver = new RemoteWebDriver(new URL(hubhost), chromeOptions);
                 break;
             case "IE":
                 //driver = new InternetExplorerDriver();
@@ -43,9 +38,8 @@ public class SeleniumBase {
                 //driver = new FirefoxDriver();
                 break;
         }
-        //System.out.println("baseurl");
+
         driver.get(baseurl);
-        //driver.get("http://");
     }
 
     public void closeBrowser() {
@@ -55,6 +49,40 @@ public class SeleniumBase {
             e.printStackTrace();
         }
     }
+
+    /*Grid Mode*/
+    public void openBrowserInGrid() throws MalformedURLException {
+        isRunningInGrid = true;
+        String hubhost = config.getString("HUBHOST");
+        String browser = config.getString("BROWSER");
+        String baseurl = config.getString("BASEURL");
+
+        /* Selenium Grid Mode*/
+        switch (browser) {
+            case "CH": //Chrome
+                ChromeOptions chromeOptions = new ChromeOptions();
+                startWebDriverSession(hubhost, browser, baseurl);
+                break;
+            case "IE":
+                //driver = new InternetExplorerDriver();
+                break;
+            case "FF":
+                //driver = new FirefoxDriver();
+                break;
+        }
+
+        getDriver().manage().window().maximize();
+    }
+
+    public void closeBrowserInGrid() {
+        try {
+            closeWebDriverSession();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     public void startSeleniumServer() throws Exception {
 

@@ -33,7 +33,7 @@ public class TestBase extends SeleniumBase {
     }
 
     // Create global WebDriver
-    @BeforeMethod(groups = { "abstract" })
+    @BeforeMethod(groups = { "abstract", "non-grid" })
     public void setUpTests() {
         WebDriver driver;
         try {
@@ -44,10 +44,31 @@ public class TestBase extends SeleniumBase {
     }
 
     // Close WebDriver
-    @AfterMethod(groups = { "abstract" })
+    @AfterMethod(groups = { "abstract", "non-grid" })
     public void tearDownTests() throws Exception{
         try {
             super.closeBrowser();
+        } catch (Exception e) {
+            //
+        }
+    }
+
+    // Create global WebDriver in Grid Mode
+    @BeforeMethod(groups = { "abstract", "grid" })
+    public void setUpTestsInGrid() {
+        WebDriver driver;
+        try {
+            super.openBrowserInGrid();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Close WebDriver in Grid Mode
+    @AfterMethod(groups = { "abstract", "grid" })
+    public void tearDownTestsInGrid() throws Exception{
+        try {
+            super.closeBrowserInGrid();
         } catch (Exception e) {
             //
         }
@@ -62,9 +83,9 @@ public class TestBase extends SeleniumBase {
 
         }
     }
-
+/*
     public WebDriver getDriver() {
         return driver; // static handle to Selenium object
     }
-
+*/
 }

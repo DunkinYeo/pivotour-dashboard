@@ -8,6 +8,7 @@
             <run>
                 <include name="abstract" />
                 <include name="smoke" />
+                <exclude name="grid" />
             </run>
         </groups>
 

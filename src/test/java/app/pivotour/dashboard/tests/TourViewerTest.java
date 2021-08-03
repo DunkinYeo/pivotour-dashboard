@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import static app.pivotour.dashboard.library.ThreadSafeWebDriverStorage.getDriver;
+
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 

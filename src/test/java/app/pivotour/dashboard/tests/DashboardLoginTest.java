@@ -6,10 +6,10 @@ import app.pivotour.dashboard.pages.LoginPage;
 import app.pivotour.dashboard.pages.HeaderPage;
 
 import org.openqa.selenium.WebDriver;
+import static app.pivotour.dashboard.library.ThreadSafeWebDriverStorage.getDriver;
 
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
-
 import java.util.concurrent.TimeUnit;
 
 public class DashboardLoginTest extends TestBase {
@@ -17,6 +17,7 @@ public class DashboardLoginTest extends TestBase {
     @Test(groups = { "smoke" })
     public void VerifyLogin() {
         WebDriver driver = getDriver();
+
         //Go to Tour frontpage (login)
         //driver.get(config.getString("BASEURL"));
         //Page loding timeout (10s)
@@ -36,6 +37,7 @@ public class DashboardLoginTest extends TestBase {
             Thread.sleep(1000);
         } catch (Exception e) {
             e.printStackTrace(System.out);
+            fail();
         }
     }
 
